@@ -1,0 +1,52 @@
+@mixin big-screen {
+    @media (min-height: 901px) {
+        @content;
+    }
+}
+
+@mixin tablet-screen {
+    @media (max-height: 900px) {
+        @content;
+    }
+}
+
+@mixin lime-bg {
+    background-color: #f3e6d1;
+}
+
+.header {
+    @include lime-bg;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.reservation-container {
+    display: grid;
+
+    @include lime-bg;
+
+    @include big-screen {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include tablet-screen {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    &.single {
+        display: flex;
+    }
+}
+
+.submit-btn {
+    padding: 1rem;
+    text-transform: uppercase;
+    background-color: #c1dbc2;
+    border: 1px solid #c1dbc2;
+    font-size: 1rem;
+    width: 10rem;
+}
+
+.submit-btn:hover {
+    background-color: #c8e0c8 !important;
+}

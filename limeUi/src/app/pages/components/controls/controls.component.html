@@ -1,0 +1,39 @@
+<div [ngSwitch]="control.type">
+  <form [formGroup]="formGroup">
+    <ng-container *ngSwitchCase="3">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>{{ control.displayName }}</mat-label>
+        <input [formControlName]="control.name" matInput />
+      </mat-form-field>
+    </ng-container>
+    <ng-container *ngSwitchCase="2">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>{{ control.displayName }}</mat-label>
+        <input type="number" [formControlName]="control.name" matInput />
+      </mat-form-field>
+    </ng-container>
+    <ng-container *ngSwitchCase="4">
+      <mat-form-field appearance="fill">
+        <mat-label>{{ control.displayName }}</mat-label>
+        <mat-select [formControlName]="control.name">
+          <mat-option *ngFor="let item of control.options" [value]="item.id">{{
+            item.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-container>
+    <ng-container *ngSwitchCase="1">
+      <mat-form-field appearance="fill">
+        <mat-label>{{ control.displayName }}</mat-label>
+        <mat-date-range-input
+          [rangePicker]="picker"
+        >
+          <input formControlName="start" matStartDate placeholder="Start date"  #dateRangeStart/>
+          <input formControlName="end" matEndDate placeholder="End date" #dateRangeend />
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </ng-container>
+  </form>
+</div>

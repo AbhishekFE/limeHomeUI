@@ -1,0 +1,23 @@
+<div
+  class="container-fluid h-100 d-flex justify-content-center align-items-center"
+>
+  <form [formGroup]="reservationFormGroup">
+    <div class="p-3 header font-size-5">
+        Book your suite at limehome
+        <hr />
+    </div>
+    <div class="pb-3 reservation-container">
+      <div *ngFor="let control of controlArray">
+        <div class="px-3">
+          <app-controls
+            [formGroup]="reservationFormGroup"
+            [control]="control"
+          ></app-controls>
+        </div>
+      </div>
+    </div>
+    <div class="px-3 pb-3 header">
+        <button (click)="submit()" class="submit-btn">Book Now</button>
+    </div>
+  </form>
+</div>

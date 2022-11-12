@@ -21,7 +21,18 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      /***************************PAGE CONSTANTS******************************/
+      "@pages/constants/*": ["src/app/pages/constants/*.ts"],
+      "@pages/interfaces/*": ["src/app/pages/interfaces/*.ts"],
+
+      /***************************Services************************************/
+      "@pages/services/*": ["src/app/pages/services/*.service.ts"],
+
+      /***************************Components**********************************/
+      "@pages/components/*": ["src/app/pages/*.component.ts"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
