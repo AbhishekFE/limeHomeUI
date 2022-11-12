@@ -43,6 +43,8 @@ export class ReservationComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.reservationFormGroup.getRawValue());
+    if (this.reservationFormGroup.valid) {
+      
+    }
   }
 }
