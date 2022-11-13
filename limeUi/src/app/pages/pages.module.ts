@@ -4,7 +4,6 @@ import { ReservationComponent } from '@pages/components/components/reservation/r
 import { PagesRoutingModule } from './pages-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ControlsComponent } from './components/controls/controls.component';
-import { HttpClientModule } from '@angular/common/http';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -29,7 +28,6 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatSelectModule,
     MatButtonModule,
     MatNativeDateModule,
-    HttpClientModule
   ]
 })
 export class PagesModule { }

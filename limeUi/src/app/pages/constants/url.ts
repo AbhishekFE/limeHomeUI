@@ -1,3 +1,3 @@
 export const URL = {
-    bookSuite: '/api/book'
+    bookSuite: '/book'
 }

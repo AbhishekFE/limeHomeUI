@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { RESERVATION_FORM } from '@pages/constants/reservation';
+import { ReservationService } from '@pages/services/reservation';
 
 @Component({
   selector: 'app-reservation',
@@ -13,7 +14,7 @@ export class ReservationComponent implements OnInit {
   reservationFormGroup: FormGroup;
   controlArray: Array<any>;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private service: ReservationService) {
     this.formConfig = Object.assign({}, RESERVATION_FORM);
     this.reservationFormGroup = this.fb.group({});
     this.controlArray = [];
@@ -44,7 +45,9 @@ export class ReservationComponent implements OnInit {
 
   submit() {
     if (this.reservationFormGroup.valid) {
-      
+      this.service.saveCheckIn(this.reservationFormGroup.value).subscribe(resp => {
+        alert('Details Saved successfully');
+      });
     }
   }
 }
