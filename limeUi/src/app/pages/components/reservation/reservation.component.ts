@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { RESERVATION_FORM } from '@pages/constants/reservation';
 import { ReservationService } from '@pages/services/reservation';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.scss'],
 })
-export class ReservationComponent implements OnInit {
+export class ReservationComponent implements OnInit, OnDestroy {
   formConfig: any;
   reservationFormGroup: FormGroup;
   controlArray: Array<any>;
+  notifier: Subject<any> = new Subject<any>();
 
   constructor(private fb: FormBuilder, private service: ReservationService) {
     this.formConfig = Object.assign({}, RESERVATION_FORM);
@@ -45,9 +47,14 @@ export class ReservationComponent implements OnInit {
 
   submit() {
     if (this.reservationFormGroup.valid) {
-      this.service.saveCheckIn(this.reservationFormGroup.value).subscribe(resp => {
+      this.service.saveCheckIn(this.reservationFormGroup.value).pipe(takeUntil(this.notifier)).subscribe(resp => {
         alert('Details Saved successfully');
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.notifier.next(true);
+    this.notifier.complete();
   }
 }
